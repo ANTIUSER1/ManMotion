@@ -4,8 +4,13 @@
 package pns.api.mainClasses;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import org.apache.commons.math3.analysis.UnivariateFunction;
+import pns.tools.Integral;
+import pns.tools.Interpolate;
 
 /**
  *
@@ -71,6 +76,35 @@ public class Segment implements Serializable, Runnable {
         point9.setX2(Math.random());
         point9.setX3(Math.random());
         point9TreeSet.add(point9);
+    }
+
+    public void calcData(double from, double to) {
+
+    }
+
+    public double calcData() {
+        List<Point9> pts = new ArrayList<Point9>(point9TreeSet);
+        double[] mms = new double[pts.size()];
+        double[] vvs1 = new double[mms.length];
+        double[] vvs2 = new double[mms.length];
+        double[] vvs3 = new double[mms.length];
+        for (int k = 0; k < mms.length; k++) {
+            mms[k] = pts.get(k).getMoment();
+            vvs1[k] = pts.get(k).getV1();
+            vvs2[k] = pts.get(k).getV3();
+            vvs3[k] = pts.get(k).getV3();
+        }
+
+        Interpolate interpolate = new Interpolate();
+        UnivariateFunction f = interpolate.interpolate(mms, vvs1);
+        Integral integral = new Integral();
+        double[] XX1 = integral.doIntegrate(f, mms);
+        for (int k = 0; k < XX1.length - 1; k++) {
+            pts.get(k).setX1(XX1[k]);
+        }
+        double res = pns.utils.array.ArrayNumberUtils.makeSumm(XX1);
+
+        return res;
     }
 
     @Override

@@ -22,7 +22,6 @@ public class ImportTXT {
 
     public ImportTXT(String fName) {
         fileName = fName;
-        //file = new File(fName);
         fileActor = new FileActor(fName);
     }
 
@@ -40,9 +39,8 @@ public class ImportTXT {
 
     }
 
-    public void readFile() {
+    public String readFile() {
         fileActor.fileRead();
-        System.out.println("   fileActor.getFileContent()   " + fileActor.getFileContent());
-
+        return fileActor.getFileContent().trim();
     }
 }

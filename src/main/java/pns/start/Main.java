@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pns.api.fileimports.ConvertingToSegment;
 import pns.api.fileimports.ImportTXT;
 import pns.api.mainClasses.Limb;
 import pns.api.mainClasses.Man;
@@ -16,11 +17,17 @@ public class Main {
     private static String fileName = "c:/segmData/";
 
     public static void main(String[] args) {
+        Segment segment;
 
         System.out.println(" ++++++++++++++  " + new Date());
         if (args.length == 1) {
             ImportTXT importTXT = new ImportTXT(args[0]);
-            importTXT.readFile();
+            String s = importTXT.readFile();
+            ConvertingToSegment cts = new ConvertingToSegment();
+            segment = cts.convert(s);
+
+            double sm = segment.calcData();
+            System.out.println(segment + "  " + sm);
         }
 //        segmentOperations(args);
 //        limbOperation(args);

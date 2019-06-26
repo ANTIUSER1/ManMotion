@@ -18,10 +18,10 @@ public class Point9 implements Serializable, Comparable {
             v1, v2, v3, // скорость
             a1, a2, a3 // ускорение
             ;
-    private long moment;
+    private double moment;
 
     public Point9() {
-        moment = System.currentTimeMillis();
+        moment = Math.random() * Math.random() * Math.random() * Math.random();
     }
 
     public double getX1() {
@@ -96,11 +96,11 @@ public class Point9 implements Serializable, Comparable {
         this.a3 = a3;
     }
 
-    public long getMoment() {
+    public double getMoment() {
         return moment;
     }
 
-    public void setMoment(long moment) {
+    public void setMoment(double moment) {
         this.moment = moment;
     }
 
@@ -116,15 +116,13 @@ public class Point9 implements Serializable, Comparable {
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.a1) ^ (Double.doubleToLongBits(this.a1) >>> 32));
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.a2) ^ (Double.doubleToLongBits(this.a2) >>> 32));
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.a3) ^ (Double.doubleToLongBits(this.a3) >>> 32));
-        hash = 53 * hash + (int) (this.moment ^ (this.moment >>> 32));
+        hash = 53 * hash + (int) (moment * 10000);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
+
         if (obj == null) {
             return false;
         }
@@ -162,6 +160,10 @@ public class Point9 implements Serializable, Comparable {
         if (this.moment != other.moment) {
             return false;
         }
+        if (this == obj) {
+            return true;
+        }
+        System.out.println("   this= " + this);
         return true;
     }
 
@@ -180,7 +182,7 @@ public class Point9 implements Serializable, Comparable {
         }
         final Point9 other = (Point9) o;
 
-        return (int) (moment - other.moment);
+        return (int) (1000000000 * (moment - other.moment));
     }
 
 }
