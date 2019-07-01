@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import org.apache.commons.math3.analysis.UnivariateFunction;
+import org.apache.commons.math3.exception.NumberIsTooSmallException;
+import pns.api.exeptions.SegmentExeption;
 import pns.tools.Integral;
 import pns.tools.Interpolate;
 
@@ -82,7 +84,7 @@ public class Segment implements Serializable, Runnable {
 
     }
 
-    public double calcData() {
+    public double calcData() throws SegmentExeption {
         List<Point9> pts = new ArrayList<Point9>(point9TreeSet);
         double[] mms = new double[pts.size()];
         double[] vvs1 = new double[mms.length];
@@ -94,17 +96,19 @@ public class Segment implements Serializable, Runnable {
             vvs2[k] = pts.get(k).getV3();
             vvs3[k] = pts.get(k).getV3();
         }
-
-        Interpolate interpolate = new Interpolate();
-        UnivariateFunction f = interpolate.interpolate(mms, vvs1);
-        Integral integral = new Integral();
-        double[] XX1 = integral.doIntegrate(f, mms);
-        for (int k = 0; k < XX1.length - 1; k++) {
-            pts.get(k).setX1(XX1[k]);
+        try {
+            Interpolate interpolate = new Interpolate();
+            UnivariateFunction f = interpolate.interpolate(mms, vvs1);
+            Integral integral = new Integral();
+            double[] XX1 = integral.doIntegrate(f, mms);
+            for (int k = 0; k < XX1.length - 1; k++) {
+                pts.get(k).setX1(XX1[k]);
+            }
+            double res = pns.utils.array.ArrayNumberUtils.makeSumm(XX1);
+            return res;
+        } catch (NumberIsTooSmallException e) {
         }
-        double res = pns.utils.array.ArrayNumberUtils.makeSumm(XX1);
-
-        return res;
+        return 0;
     }
 
     @Override

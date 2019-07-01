@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pns.api.exeptions.SegmentExeption;
 import pns.api.fileimports.ConvertingToSegment;
 import pns.api.fileimports.ImportTXT;
 import pns.api.mainClasses.Limb;
@@ -26,8 +27,13 @@ public class Main {
             ConvertingToSegment cts = new ConvertingToSegment();
             segment = cts.convert(s);
 
-            double sm = segment.calcData();
-            System.out.println(segment + "  " + sm);
+            double sm;
+            try {
+                sm = segment.calcData();
+                System.out.println(segment + "  " + sm);
+            } catch (SegmentExeption ex) {
+                //    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 //        segmentOperations(args);
 //        limbOperation(args);
