@@ -11,6 +11,7 @@ import java.util.TreeSet;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.exception.NumberIsTooSmallException;
 import pns.api.exeptions.SegmentExeption;
+import pns.api.interfaces.ISegm;
 import pns.tools.Integral;
 import pns.tools.Interpolate;
 
@@ -18,7 +19,7 @@ import pns.tools.Interpolate;
  *
  * @author Movement
  */
-public class Segment implements Serializable, Runnable {
+public class Segment implements Serializable, Runnable, ISegm {
 
     private int size = 3;
     private Point9 fixedPoint;

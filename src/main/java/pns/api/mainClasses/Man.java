@@ -5,6 +5,7 @@
  */
 package pns.api.mainClasses;
 
+import pns.api.interfaces.ISteps;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
