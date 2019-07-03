@@ -22,9 +22,10 @@ public class ConvertingToSegment {
         data = data.replace(',', '.');
         int k = 0;
         String[] lines = data.split(System.lineSeparator());
-        System.out.println("   lines.length  " + lines.length);
+        System.out.println("Working with   lines length  " + lines.length + " lines");
         for (String s : lines) {
             String[] ss = s.split(";");
+            System.out.print("         Splitting line by`;` symbol -- result " + ss.length + "  pieces ");
             Point9 ptPoint9 = new Point9();
             if (s.length() > 0) {
                 try {
@@ -54,7 +55,7 @@ public class ConvertingToSegment {
                 segment.getPoint9TreeSet().add(ptPoint9);
 
             }
-            System.out.println("     Converting   DONE! " + segment.getPoint9TreeSet().size());
+            System.out.println(" Converting   DONE! " + segment.getPoint9TreeSet().size());
         }
         //  System.out.println("      segment.getPoint9TreeSet().size()  " + segment.getPoint9TreeSet().size());
         //System.out.println(segment);
