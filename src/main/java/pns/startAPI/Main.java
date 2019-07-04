@@ -2,7 +2,9 @@ package pns.startAPI;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pns.api.exeptions.SegmentExeption;
@@ -16,24 +18,30 @@ import pns.fileUtils.FileBinActor;
 public class Main {
 
     private static String fileName = "c:/segmData/";
+    private static List<Segment> segmentList = new ArrayList<>();
 
     public static void main(String[] args) {
         Segment segment;
 
         System.out.println(" ++++++++++++++  " + new Date());
-        if (args.length == 1) {
-            ImportTXT importTXT = new ImportTXT(args[0]);
-            String s = importTXT.readFile();
-            ConvertingToSegment cts = new ConvertingToSegment();
-            segment = cts.convert(s);
+        if (args.length > 0) {
+            for (int np = 0; np < args.length; np++) {
 
-            double sm;
-            try {
-                sm = segment.calcData();
-                System.out.println(segment + "  " + sm);
-            } catch (SegmentExeption ex) {
-                //    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                ImportTXT importTXT = new ImportTXT(args[np]);
+                String s = importTXT.readFile();
+                ConvertingToSegment cts = new ConvertingToSegment();
+                segment = cts.convert(s);
+
+                double sm;
+                try {
+                    sm = segment.calcData();
+                    System.out.println(segment + "  " + sm + "  np=" + np + "  " + System.lineSeparator() + "  " + System.lineSeparator() + "  ");;
+                } catch (SegmentExeption ex) {
+                    //    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+        } else {
+            System.out.println(" Minimum 1 parameters expeted. Given only  " + args.length);
         }
 //        segmentOperations(args);
 //        limbOperation(args);

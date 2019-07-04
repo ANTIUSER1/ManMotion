@@ -24,9 +24,19 @@ public class Segment implements Serializable, Runnable, ISegm {
     private int size = 3;
     private Point9 fixedPoint;
     private SortedSet<Point9> point9TreeSet = new TreeSet<Point9>();
+    private String id = "";
 
     public Segment() {
         fixedPoint = new Point9();
+        id = pns.utils.strings.RStrings.rndLetterStringRNDLen(5);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setSize(int size) {
@@ -114,7 +124,7 @@ public class Segment implements Serializable, Runnable, ISegm {
 
     @Override
     public String toString() {
-        return "Segment{" + "size=" + size + ", " + System.lineSeparator()
+        return "Segment{" + "id=" + id + ", " + "size=" + size + ", " + System.lineSeparator()
                 + "point9TreeSet=" + point9TreeSet + System.lineSeparator() + " point9TreeSet.size() " + point9TreeSet.size() + "  " + System.lineSeparator() + '}';
     }
 

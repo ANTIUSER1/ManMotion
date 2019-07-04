@@ -10,7 +10,9 @@
     <name>ManMotionAPI</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+
      
     </properties>
 
@@ -44,7 +46,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>pns.start.Main</mainClass>
+                            <mainClass>pns.startAPI.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -71,7 +73,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>pns.start.Main</mainClass>
+                            <mainClass>pns.startAPI.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
