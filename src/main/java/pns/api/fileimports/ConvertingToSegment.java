@@ -39,7 +39,7 @@ public class ConvertingToSegment {
                         mmoment = Double.parseDouble(ss[0].trim());
                         ptPoint9.setMoment(mmoment);
                     } catch (NumberFormatException e) {
-                        System.out.println("MM " + k + "     mmoment " + mmoment + "  ss[0] " + ss[0]);
+                        System.out.println("MM " + k + "     M " + mmoment + "  ss[0] " + ss[0]);
                     } catch (ArrayIndexOutOfBoundsException e) {
                     }
                     try {
@@ -47,7 +47,7 @@ public class ConvertingToSegment {
                         ptPoint9.setV1(v1);
                         //  System.out.println("k=" + k + "   " + ptPoint9);
                     } catch (NumberFormatException e) {
-                        System.out.println("   V   " + k + "  VV  " + v1 + "  ss[1] " + ss[1]);
+                        System.out.println("   V   " + k + "  V  " + v1 + "  ss[1] " + ss[1]);
                     } catch (ArrayIndexOutOfBoundsException e) {
                     }
                     try {
@@ -55,7 +55,7 @@ public class ConvertingToSegment {
                         ptPoint9.setA1(a1);
                         //  System.out.println("k=" + k + "   " + ptPoint9);
                     } catch (NumberFormatException e) {
-                        System.out.println("   A   " + k + "  VV  " + a1 + "  ss[1] " + ss[1]);
+                        System.out.println("   A   " + k + "  A  " + a1 + "  ss[1] " + ss[1]);
                     } catch (ArrayIndexOutOfBoundsException e) {
                     }
                     k++;
@@ -66,7 +66,7 @@ public class ConvertingToSegment {
             System.out.println(" Converting   DONE! " + segment.getPoint9TreeSet().size());
         }
         //  System.out.println("      segment.getPoint9TreeSet().size()  " + segment.getPoint9TreeSet().size());
-        System.out.println(segment);
+        //    System.out.println(segment);
         return segment;
     }
 
