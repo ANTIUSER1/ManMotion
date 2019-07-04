@@ -24,22 +24,12 @@ public class Main {
         Segment segment;
 
         System.out.println(" ++++++++++++++  " + new Date());
-        if (args.length > 0) {
-            for (int np = 0; np < args.length; np++) {
+        if (args.length == 1) {
 
-                ImportTXT importTXT = new ImportTXT(args[np]);
-                String s = importTXT.readFile();
-                ConvertingToSegment cts = new ConvertingToSegment();
-                segment = cts.convert(s);
-
-                double sm;
-                try {
-                    sm = segment.calcData();
-                    System.out.println(segment + "  " + sm + "  np=" + np + "  " + System.lineSeparator() + "  " + System.lineSeparator() + "  ");;
-                } catch (SegmentExeption ex) {
-                    //    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            ImportTXT importTXT = new ImportTXT(args[0]);
+            String s = importTXT.readFile();
+            System.out.println(" s= " + s);
+            convertNew(s);
         } else {
             System.out.println(" Minimum 1 parameters expeted. Given only  " + args.length);
         }
@@ -134,6 +124,26 @@ public class Main {
         System.out.println("---------------ffff  " + fileName);
         fa.writeFile(fileName, obj);
         // System.out.println(" limb " + obj);
+    }
+
+    private static void convert(String s) {
+        Segment segment = new Segment();
+        ConvertingToSegment cts = new ConvertingToSegment();
+        segment = cts.convert(s, true);
+
+        double sm;
+        try {
+            sm = segment.calcData();
+            System.out.println(segment + "  " + sm + "  " + System.lineSeparator() + "  " + System.lineSeparator() + "  ");;
+        } catch (SegmentExeption ex) {
+            //    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private static void convertNew(String s) {
+        Segment segment = new Segment();
+        ConvertingToSegment cts = new ConvertingToSegment();
+        List<List<Segment>> segmentList = cts.convertNEW(s);
     }
 
 }

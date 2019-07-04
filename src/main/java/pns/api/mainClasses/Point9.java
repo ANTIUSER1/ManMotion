@@ -18,6 +18,8 @@ public class Point9 implements Serializable, Comparable {
             v1, v2, v3, // скорость
             a1, a2, a3 // ускорение
             ;
+
+    private double t0;
     private double moment;
 
     public Point9() {
@@ -96,6 +98,14 @@ public class Point9 implements Serializable, Comparable {
         this.a3 = a3;
     }
 
+    public double getT0() {
+        return t0;
+    }
+
+    public void setT0(double t0) {
+        this.t0 = t0;
+    }
+
     public double getMoment() {
         return moment;
     }
@@ -172,6 +182,7 @@ public class Point9 implements Serializable, Comparable {
         return "Point9={" + "x1=" + x1 + ", x2=" + x2 + ", x3=" + x3 + "," + System.lineSeparator()
                 + " v1=" + v1 + ", v2=" + v2 + ", v3=" + v3 + "," + System.lineSeparator()
                 + " a1=" + a1 + ", a2=" + a2 + ", a3=" + a3 + "," + System.lineSeparator()
+                + " t0=" + t0 + "," + System.lineSeparator()
                 + " moment=" + moment + '}' + System.lineSeparator() + "    " + System.lineSeparator();
     }
 
