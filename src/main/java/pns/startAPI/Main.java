@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pns.api.exeptions.SegmentExeption;
 import pns.api.fileimports.ConvertingToSegment;
+import pns.api.fileimports.FileCalculator;
 import pns.api.fileimports.ImportTXT;
 import pns.api.mainClasses.Limb;
 import pns.api.mainClasses.Man;
@@ -28,7 +28,6 @@ public class Main {
 
             ImportTXT importTXT = new ImportTXT(args[0]);
             String s = importTXT.readFile();
-            System.out.println(" s= " + s);
             convertNew(s);
         } else {
             System.out.println(" Minimum 1 parameters expeted. Given only  " + args.length);
@@ -42,11 +41,11 @@ public class Main {
         long ts = System.currentTimeMillis();
 
         Segment segment = new Segment();
-        segment.setSize(20);
+        segment.setLength(20);
         if (args.length == 1) {
             try {
                 int sz = pns.utils.ParserStr.parseInt(args[0]);
-                segment.setSize(sz);
+                segment.setLength(sz);
             } catch (ParseException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -132,18 +131,25 @@ public class Main {
         segment = cts.convert(s, true);
 
         double sm;
-        try {
-            sm = segment.calcData();
-            System.out.println(segment + "  " + sm + "  " + System.lineSeparator() + "  " + System.lineSeparator() + "  ");;
-        } catch (SegmentExeption ex) {
-            //    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            sm = segment.calcData();
+//            System.out.println(segment + "  " + sm + "  " + System.lineSeparator() + "  " + System.lineSeparator() + "  ");;
+//        } catch (SegmentExeption ex) {
+//            //    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     private static void convertNew(String s) {
         Segment segment = new Segment();
         ConvertingToSegment cts = new ConvertingToSegment();
         List<List<Segment>> segmentList = cts.convertNEW(s);
+
+        List<Segment> simpleSegmentList = FileCalculator.mkSimpleSegmentList(segmentList);
+        FileCalculator.outputSimpleSegmentList(simpleSegmentList);
+        System.out.println("");
+        FileCalculator.outputSimpleSegmentList(simpleSegmentList, 0, segmentList.get(0).size());
+        simpleSegmentList = FileCalculator.calcSegmList(simpleSegmentList, 0, segmentList.get(0).size());
+        System.out.println(simpleSegmentList);
     }
 
 }

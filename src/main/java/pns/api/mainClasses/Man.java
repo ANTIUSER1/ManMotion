@@ -5,10 +5,10 @@
  */
 package pns.api.mainClasses;
 
-import pns.api.interfaces.ISteps;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import pns.api.interfaces.ISteps;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Man implements Serializable, ISteps {
     private Map<String, Limb> mapLimb = new HashMap<String, Limb>();
 
     public Man() {
-        head.setSize(100 * Math.random());
+        head.setLength(100 * Math.random());
         mapLimb.put("Left hand", new Limb());
         mapLimb.put("Right hand", new Limb());
         mapLimb.put("Left Leg", new Limb());
@@ -29,14 +29,14 @@ public class Man implements Serializable, ISteps {
     }
 
     public void runSteps(int steps) throws InterruptedException {
-        head.setSize(steps);
+        head.setLength(steps);
         int k = 0;
         for (Map.Entry<String, Limb> entry : mapLimb.entrySet()) {
             Limb limb = entry.getValue();
             limb.getSegmentBottom().generatePointSet();
             limb.getSegmentTop().generatePointSet();
-            limb.getSegmentBottom().setSize(steps);
-            limb.getSegmentTop().setSize(steps);
+            limb.getSegmentBottom().setLength(steps);
+            limb.getSegmentTop().setLength(steps);
             Thread tb = new Thread(limb.getSegmentBottom(), "Limb Segment Bottom " + k);
             tb.start();
             tb.join();

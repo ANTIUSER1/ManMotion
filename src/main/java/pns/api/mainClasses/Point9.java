@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author Movement
  */
-public class Point9 implements Serializable, Comparable {
+public class Point9 implements Serializable {
 
     protected double x1, x2, x3, // коодинаты
             v1, v2, v3, // скорость
@@ -20,10 +20,17 @@ public class Point9 implements Serializable, Comparable {
             ;
 
     private double t0;
-    private double moment;
+    protected boolean iniUse = false;
 
     public Point9() {
-        moment = Math.random() * Math.random() * Math.random() * Math.random();
+    }
+
+    public boolean isIniUse() {
+        return iniUse;
+    }
+
+    public void setIniUse(boolean iniUse) {
+        this.iniUse = iniUse;
     }
 
     public double getX1() {
@@ -106,14 +113,6 @@ public class Point9 implements Serializable, Comparable {
         this.t0 = t0;
     }
 
-    public double getMoment() {
-        return moment;
-    }
-
-    public void setMoment(double moment) {
-        this.moment = moment;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -126,7 +125,7 @@ public class Point9 implements Serializable, Comparable {
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.a1) ^ (Double.doubleToLongBits(this.a1) >>> 32));
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.a2) ^ (Double.doubleToLongBits(this.a2) >>> 32));
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.a3) ^ (Double.doubleToLongBits(this.a3) >>> 32));
-        hash = 53 * hash + (int) (moment * 10000);
+
         return hash;
     }
 
@@ -167,9 +166,6 @@ public class Point9 implements Serializable, Comparable {
         if (Double.doubleToLongBits(this.a3) != Double.doubleToLongBits(other.a3)) {
             return false;
         }
-        if (this.moment != other.moment) {
-            return false;
-        }
         if (this == obj) {
             return true;
         }
@@ -182,18 +178,8 @@ public class Point9 implements Serializable, Comparable {
         return "Point9={" + "x1=" + x1 + ", x2=" + x2 + ", x3=" + x3 + "," + System.lineSeparator()
                 + " v1=" + v1 + ", v2=" + v2 + ", v3=" + v3 + "," + System.lineSeparator()
                 + " a1=" + a1 + ", a2=" + a2 + ", a3=" + a3 + "," + System.lineSeparator()
-                + " t0=" + t0 + "," + System.lineSeparator()
-                + " moment=" + moment + '}' + System.lineSeparator() + "    " + System.lineSeparator();
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        if (getClass() != o.getClass()) {
-            return -Integer.MAX_VALUE;
-        }
-        final Point9 other = (Point9) o;
-
-        return (int) (1000000000 * (moment - other.moment));
+                + " t0=" + t0 + ","
+                + " iniUse=" + iniUse + System.lineSeparator();
     }
 
 }

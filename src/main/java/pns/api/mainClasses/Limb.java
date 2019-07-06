@@ -5,8 +5,8 @@
  */
 package pns.api.mainClasses;
 
-import pns.api.interfaces.ISteps;
 import java.io.Serializable;
+import pns.api.interfaces.ISteps;
 
 /**
  *
@@ -32,8 +32,8 @@ public class Limb implements Serializable, ISteps {
 
     @Override
     public void runSteps(int steps) throws InterruptedException {
-        segmentBottom.setSize(steps);
-        segmentTop.setSize(steps);
+        segmentBottom.setLength(steps);
+        segmentTop.setLength(steps);
         Thread tb = new Thread(segmentBottom, "Segment Bottom");
         tb.start();
         tb.join();
