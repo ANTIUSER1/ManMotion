@@ -41,6 +41,9 @@ public class ImportTXT {
 
     public String readFile() {
         fileActor.fileRead();
-        return fileActor.getFileContent().trim();
+        String res = fileActor.getFileContent().trim();
+        res = res.replaceAll(" +", " ");
+        return res;
     }
+
 }

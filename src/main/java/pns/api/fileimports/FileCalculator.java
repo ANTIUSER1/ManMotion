@@ -50,7 +50,7 @@ public class FileCalculator {
         return res;
     }
 
-    public static List<Segment> calcSegmList(List<Segment> sgm, int segmNo, int total) {
+    public static List<Segment> integrateSegmList(List<Segment> sgm, int segmNo, int total) {
         List<Segment> sgmToCalc = outputSimpleSegmentList(sgm, segmNo, total);
         int N = sgmToCalc.size();
 
@@ -76,14 +76,11 @@ public class FileCalculator {
             UnivariateFunction f3 = interpolate.interpolate(mm, vv3);
             Integral integral = new Integral();
 
-            System.out.println("    CALCULATING");
-
             double[] XX1 = integral.doIntegrate(f1, mm);
             double[] XX2 = integral.doIntegrate(f2, mm);
             double[] XX3 = integral.doIntegrate(f3, mm);
 
             for (int k = 0; k < XX1.length - 1; k++) {
-                System.out.println(" XX1[" + k + "] " + XX1[k]);
                 sgmToCalc.get(k).getFixedPoint().setX1(XX1[k]);
                 sgmToCalc.get(k).getFixedPoint().setX2(XX2[k]);
                 sgmToCalc.get(k).getFixedPoint().setX3(XX3[k]);

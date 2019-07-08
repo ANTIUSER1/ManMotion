@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pns.api.fileimports.ConvertingToSegment;
-import pns.api.fileimports.FileCalculator;
 import pns.api.fileimports.ImportTXT;
 import pns.api.mainClasses.Limb;
 import pns.api.mainClasses.Man;
@@ -144,12 +143,9 @@ public class Main {
         ConvertingToSegment cts = new ConvertingToSegment();
         List<List<Segment>> segmentList = cts.convertNEW(s);
 
-        List<Segment> simpleSegmentList = FileCalculator.mkSimpleSegmentList(segmentList);
-        FileCalculator.outputSimpleSegmentList(simpleSegmentList);
-        System.out.println("");
-        FileCalculator.outputSimpleSegmentList(simpleSegmentList, 0, segmentList.get(0).size());
-        simpleSegmentList = FileCalculator.calcSegmList(simpleSegmentList, 0, segmentList.get(0).size());
-        System.out.println(simpleSegmentList);
+        List<Segment> simpleSegmentList = cts.mkSimpleSegmentList(segmentList);
+        simpleSegmentList = cts.mkSimpleSegmList(s);
+
     }
 
 }

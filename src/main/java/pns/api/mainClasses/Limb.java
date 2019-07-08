@@ -30,6 +30,14 @@ public class Limb implements Serializable, ISteps {
         return segmentBottom;
     }
 
+    public void setSegmentTop(Segment segmentTop) {
+        this.segmentTop = segmentTop;
+    }
+
+    public void setSegmentBottom(Segment segmentBottom) {
+        this.segmentBottom = segmentBottom;
+    }
+
     @Override
     public void runSteps(int steps) throws InterruptedException {
         segmentBottom.setLength(steps);

@@ -87,17 +87,77 @@ public class ConvertingToSegment {
             }
             k++;
         }
-
         return res;
 
     }
 
-//    public List<List<Segment>> calcAllSegments(List<List<Segment>> data) {
-//        System.out.println("DATA SIZE   ");
-//        System.out.println("            ````data.size() " + data.size());
-//        System.out.println("data size   " + data.size());
-//        return data;
-//    }
+    /**
+     * Производится вычисление остальных параметров в сегментах списка сегментов
+     *
+     * @param sgm
+     * @param segmNo
+     * @param total
+     * @return
+     */
+    public static List<Segment> mkSimpleSegmList(String s) {
+        ConvertingToSegment cts = new ConvertingToSegment();
+        List<List<Segment>> segmentList = cts.convertNEW(s);
+
+        List<Segment> simpleSegmentList = cts.mkSimpleSegmentList(segmentList);
+        return simpleSegmentList;
+    }
+
+    /**
+     * Из 2-мерного списка сегментов, сгенерированного из строки вида 4 D0{40;0.1;3.2;5.2;400.2;0.2} D1{0.12;0.2;0.1;3.2;5.2;4.2;0.2} изготавливается 1-мерный список
+     * сегментов
+     */
+    public static List<Segment> mkSimpleSegmentList(List<List<Segment>> data) {
+
+        System.out.println("          data.size()   " + data.size());
+        System.out.println("  data.get(0).size()   " + data.get(0).size());
+        List<Segment> res = new ArrayList<>();
+        for (int p = 0; p < data.size(); p++) {
+            for (int k = 0; k < data.get(p).size(); k++) {
+                res.add(data.get(p).get(k));
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Формируется список сегментов, сгруппированных по номерам сегментов в строке вида 4 D0{40;0.1;3.2;5.2;400.2;0.2} D1{0.12;0.2;0.1;3.2;5.2;4.2;0.2}
+     *
+     * @param ssl
+     * @return
+     */
+    public static List<Segment> outputSimpleSegmentList(List<Segment> ssl) {
+        List<Segment> res = new ArrayList<>();
+        for (int s = 0; s < ssl.size(); s++) {
+            //System.out.println(s + "  " + ssl.get(s).getId() + "   " + ssl.get(s).getFixedPoint().getV1());
+            res.add(ssl.get(s));
+        }
+        return res;
+    }
+
+    /**
+     * Формируется список сегментов по указанному номеру сегмента в строке вида 4 D0{40;0.1;3.2;5.2;400.2;0.2} D1{0.12;0.2;0.1;3.2;5.2;4.2;0.2}
+     *
+     * @param ssl
+     * @param k
+     * @param total
+     * @return
+     */
+    public static List<Segment> outputSimpleSegmentList(List<Segment> ssl, int k, int total) {
+        List<Segment> res = new ArrayList<>();
+        for (int s = 0; s < ssl.size(); s++) {
+            if (s % total == k) {
+                res.add(ssl.get(s));
+            }
+        }
+        return res;
+    }
+
     private List<Segment> segmentFromLine(String qs, String hd) {
 
         List<Segment> res = new ArrayList<>();
