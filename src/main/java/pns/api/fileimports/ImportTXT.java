@@ -17,12 +17,20 @@ public class ImportTXT {
     //private File file;
     private FileActor fileActor;
 
-    public ImportTXT() {
+    private static ImportTXT instance;
+
+    public static ImportTXT getInstance() {
+        if (instance == null) {
+            synchronized (ImportTXT.class) {
+                if (instance == null) {
+                    instance = new ImportTXT();
+                }
+            }
+        }
+        return instance;
     }
 
-    public ImportTXT(String fName) {
-        fileName = fName;
-        fileActor = new FileActor(fName);
+    private ImportTXT() {
     }
 
     public String getFileName() {
@@ -42,6 +50,13 @@ public class ImportTXT {
     public String readFile() {
         fileActor.fileRead();
         String res = fileActor.getFileContent().trim();
+
+        res = res.replaceAll(" +}", " ");
+        res = res.replaceAll(" +\\{ ", "\\{");
+        res = res.replaceAll("} +", "}  ");
+        res = res.replaceAll("\\{ +", "\\{");
+        res = res.replaceAll("; +", ";");
+        res = res.replaceAll(" +;", ";");
         res = res.replaceAll(" +", " ");
         return res;
     }

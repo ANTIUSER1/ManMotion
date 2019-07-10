@@ -122,35 +122,6 @@ public class Segment implements Serializable, Runnable, Comparable, ISegm {
 
     }
 
-//    public double calcData() throws SegmentExeption {
-//        List<Point9> pts = new ArrayList<Point9>(point9TreeSet);
-//        double[] mms = new double[pts.size()];
-//        double[] vvs1 = new double[mms.length];
-//        double[] vvs2 = new double[mms.length];
-//        double[] vvs3 = new double[mms.length];
-//        for (int k = 0; k < mms.length; k++) {
-//            mms[k] = pts.get(k).getMoment();
-//            vvs1[k] = pts.get(k).getV1();
-//            vvs2[k] = pts.get(k).getV3();
-//            vvs3[k] = pts.get(k).getV3();
-//        }
-//        System.out.println("     ##############   mms.length     " + mms.length);
-//        try {
-//            Interpolate interpolate = new Interpolate();
-//            UnivariateFunction f = interpolate.interpolate(mms, vvs1);
-//            Integral integral = new Integral();
-//            double[] XX1 = integral.doIntegrate(f, mms);
-//            for (int k = 0; k < XX1.length - 1; k++) {
-//                pts.get(k).setX1(XX1[k]);
-//            }
-//            double res = pns.utils.array.ArrayNumberUtils.makeSumm(XX1);
-//            System.out.println(id + "    CALC:  res   " + res);
-//            return res;
-//        } catch (NumberIsTooSmallException e) {
-//
-//        }
-//        return 0;
-//    }
     @Override
     public int hashCode() {
         int hash = 3;
@@ -207,8 +178,15 @@ public class Segment implements Serializable, Runnable, Comparable, ISegm {
             return -Integer.MAX_VALUE;
         }
         final Segment other = (Segment) o;
+        double diff = 10000000 * this.moment - 10000000 * other.moment;
+        if (diff > 0) {
+            return 1;
+        } else if (diff < 0) {
+            return -1;
+        }
 
-        return (int) (1000000000 * (moment - other.moment));
+        return 0;// (int) diff;
+
     }
 
 }
