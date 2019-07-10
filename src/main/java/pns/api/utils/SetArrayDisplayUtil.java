@@ -10,13 +10,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import pns.api.mainClasses.Limb;
+import pns.api.mainClasses.Man;
 import pns.api.mainClasses.Segment;
 
 /**
  *
  * @author Movement
  */
-public class SetArrayUtil {
+public class SetArrayDisplayUtil {
 
     public static void setDisplay(SortedSet<Segment> data) {
         if (data == null) {
@@ -29,7 +31,8 @@ public class SetArrayUtil {
             sgList.add(sg);
         }
         for (int k = 0; k < sgList.size(); k++) {
-            System.out.println(k + "    :::   Id=" + sgList.get(k).getId() + "   Moment=" + sgList.get(k).getMoment() + "   X1=" + sgList.get(k).getFixedPoint().getX1());
+            System.out.println(k + "    :::   Id=" + sgList.get(k).getId() + " length=" + sgList.get(k).getLength()
+                    + "   Moment=" + sgList.get(k).getMoment() + "   X1=" + sgList.get(k).getFixedPoint().getX1());
         }
         System.out.println("         total  " + data.size() + " items in " + data.getClass().getCanonicalName());
     }
@@ -46,6 +49,46 @@ public class SetArrayUtil {
             m++;
         }
         System.out.println("             total  " + data.size() + " items in " + data.getClass().getCanonicalName());
+    }
+
+    public static void setDisplay(Man data) {
+        System.out.println("Display Man");
+
+        System.out.println("         Head   ");
+        setDisplay(data.getHead().getSegment());
+
+        System.out.println("         Body   ");
+        setDisplay(data.getBody().getSegment());
+
+        System.out.println("         Left Hand   ");
+        setDisplay(data.getHandLeft());
+
+        System.out.println("         Right Hand   ");
+        setDisplay(data.getHandRight());
+
+        System.out.println("         Left Leg   ");
+        setDisplay(data.getLegLeft());
+
+        System.out.println("         Right Leg   ");
+        setDisplay(data.getLegRight());
+
+    }
+
+    public static void setDisplay(List<Limb> data) {
+
+        int k = 0;
+        for (Limb limb : data) {
+            System.out.println("Limb  No  " + k);
+            setDisplay(limb);
+            k++;
+        }
+    }
+
+    public static void setDisplay(Limb data) {
+        System.out.println(" Top ");
+        setDisplay(data.getSegmentSetTop());
+        System.out.println("Bottom");
+        setDisplay(data.getSegmentSetBottom());
     }
 
     public static SortedSet<Segment> search(SortedSet<Segment> sgm, String needle) {

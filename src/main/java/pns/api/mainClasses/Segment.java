@@ -15,7 +15,7 @@ public class Segment implements Serializable, Runnable, Comparable, ISegm {
 
     protected double length = 0;
     protected Point9 fixedPoint;
-    //protected Set<Point9> point9TreeSet = new HashSet<Point9>();
+
     protected String id = "";
     protected double moment;
     protected boolean iniUse = false;

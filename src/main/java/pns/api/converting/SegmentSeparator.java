@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 import pns.api.mainClasses.Segment;
-import pns.api.utils.SetArrayUtil;
+import pns.api.utils.SetArrayDisplayUtil;
 
 /**
  *
@@ -25,7 +25,6 @@ public class SegmentSeparator {
 
         System.out.println("SEPARATOR");
 
-        //SetArrayUtil.setDisplay(segmSet);
         Map<String, SortedSet<Segment>> res = groupingSegmList(segmSet);
 
         return res;
@@ -50,7 +49,7 @@ public class SegmentSeparator {
             for (int ss = 0; ss < sgList.size(); ss++) {
                 String id = sgList.get(ss);
                 if (id.equals(tmp.get(p).getId())) {
-                    SortedSet<Segment> sgmTmp = SetArrayUtil.search(sgm, id);
+                    SortedSet<Segment> sgmTmp = SetArrayDisplayUtil.search(sgm, id);
                     res.put(tmp.get(p).getId(), sgmTmp);
                 }
             }

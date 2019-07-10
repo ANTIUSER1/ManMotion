@@ -10,7 +10,11 @@ import pns.api.converting.SegmentSeparator;
 import pns.api.fileimports.ConvertorUtil;
 import pns.api.fileimports.FileCalculator;
 import pns.api.fileimports.ImportTXT;
+import pns.api.fileimports.ManFormation;
+import pns.api.fileimports.RecieverSegments;
+import pns.api.mainClasses.Man;
 import pns.api.mainClasses.Segment;
+import pns.api.utils.SetArrayDisplayUtil;
 import pns.fileUtils.FileBinActor;
 
 public class Main {
@@ -48,10 +52,21 @@ public class Main {
     }
 
     private static void convertNew(String s) {
-        SortedSet<Segment> segmSet = ConvertorUtil.convertData(s);
+
+        SortedSet<Segment> segmSet = ConvertorUtil.convertData(s, 300.3);
         Map<String, SortedSet<Segment>> segmMap = SegmentSeparator.separate(segmSet);
         segmMap = FileCalculator.integrate(segmMap);
-        //SetArrayUtil.setDisplay(segmMap);
+
+        SortedSet<Segment> segmSetD = RecieverSegments.recieveSegmSetByKey(segmMap, "D1");
+
+        SortedSet<Segment> body = SetArrayDisplayUtil.search(segmSet, "D1");
+        SetArrayDisplayUtil.setDisplay(body);
+
+        SortedSet<Segment> head = SetArrayDisplayUtil.search(segmSet, "D0");
+        SetArrayDisplayUtil.setDisplay(head);
+
+        Man man = ManFormation.generateMan(segmMap, body, head);
+        SetArrayDisplayUtil.setDisplay(man);
 
     }
 

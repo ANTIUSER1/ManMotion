@@ -18,7 +18,11 @@ import pns.api.mainClasses.Segment;
  */
 public class ConvertorUtil {
 
-    public static SortedSet<Segment> convertData(String s) {
+//    public static SortedSet<Segment> convertData(String s, double len) {
+//
+//    }
+    //, 300.3
+    public static SortedSet<Segment> convertData(String s, double len) {
         s = s.trim();
         int k = 0;
 
@@ -29,7 +33,7 @@ public class ConvertorUtil {
         for (String qs : ssTMP) {
             if (qs.trim().length() > 0) {
                 if (k > 0) {
-                    SortedSet<Segment> segmentLST = segmentFromLine(qs, ssTMP[0]);
+                    SortedSet<Segment> segmentLST = segmentFromLine(qs, ssTMP[0], len);
                     if (segmentLST != null) {
                         res.add(segmentLST);
                     }
@@ -43,7 +47,7 @@ public class ConvertorUtil {
         return result;
     }
 
-    private static SortedSet<Segment> segmentFromLine(String qs, String hd) {
+    private static SortedSet<Segment> segmentFromLine(String qs, String hd, double len) {
 
         SortedSet<Segment> res = new TreeSet<>();
         String[] ss = qs.split(" ");
@@ -65,7 +69,7 @@ public class ConvertorUtil {
             segmString.add(ss[p].trim());
         }
 
-        res = segmentListGenerator(segmString, hd, mmoment);
+        res = segmentListGenerator(segmString, hd, mmoment, len);
         //  SetArrayUtil.setDisplay(res);
 
         return res;
@@ -89,12 +93,12 @@ public class ConvertorUtil {
         return ss;
     }
 
-    private static SortedSet<Segment> segmentListGenerator(List<String> sgList, String hd, double m) {
+    private static SortedSet<Segment> segmentListGenerator(List<String> sgList, String hd, double m, double len) {
         SortedSet<Segment> res = new TreeSet();
         for (int k = 0; k < sgList.size(); k++) {
             double mmm = m + k * .000000000001 * Math.random() * Math.random() * Math.random();
             Segment segment = segmentGenerator(sgList.get(k), hd, mmm);
-            System.out.println("k=" + k + "  |  " + segment.getId());
+            segment.setLength(len);
             res.add(segment);
         }
         return res;

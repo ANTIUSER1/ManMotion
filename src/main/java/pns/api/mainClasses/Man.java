@@ -6,56 +6,100 @@
 package pns.api.mainClasses;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import pns.api.interfaces.ISteps;
 
 /**
  *
  * @author Movement
  */
-public class Man implements Serializable, ISteps {
+public class Man implements Serializable {
 
-    private Head head = new Head();
+    private ManHead head;
+    private SegmentBox body;
+    private Limb handRight;
+    private Limb handLeft;
+    private Limb legRight;
+    private Limb legLeft;
 
-    private Map<String, Limb> mapLimb = new HashMap<String, Limb>();
-
-    public Man() {
-        head.setLength(100 * Math.random());
-        mapLimb.put("Left hand", new Limb());
-        mapLimb.put("Right hand", new Limb());
-        mapLimb.put("Left Leg", new Limb());
-        mapLimb.put("Right Leg", new Limb());
+    public ManHead getHead() {
+        return head;
     }
 
-    public void runSteps(int steps) throws InterruptedException {
-        head.setLength(steps);
-        int k = 0;
-        for (Map.Entry<String, Limb> entry : mapLimb.entrySet()) {
-            Limb limb = entry.getValue();
-            limb.getSegmentBottom().generatePointSet();
-            limb.getSegmentTop().generatePointSet();
-            limb.getSegmentBottom().setLength(steps);
-            limb.getSegmentTop().setLength(steps);
-            Thread tb = new Thread(limb.getSegmentBottom(), "Limb Segment Bottom " + k);
-            tb.start();
-            tb.join();
-            Thread tt = new Thread(limb.getSegmentTop(), "Limb Segment Top " + k);
-            tt.start();
-            tb.join();
-            System.out.println("");
-            tb.join();
-            System.out.println("");
-            tb.join();
-
-            k++;
-        }
+    public void setHead(ManHead head) {
+        this.head = head;
     }
+
+    public SegmentBox getBody() {
+        return body;
+    }
+
+    public void setBody(SegmentBox body) {
+        this.body = body;
+    }
+
+    public Limb getHandRight() {
+        return handRight;
+    }
+
+    public void setHandRight(Limb handRight) {
+        this.handRight = handRight;
+    }
+
+    public Limb getHandLeft() {
+        return handLeft;
+    }
+
+    public void setHandLeft(Limb handLeft) {
+        this.handLeft = handLeft;
+    }
+
+    public Limb getLegRight() {
+        return legRight;
+    }
+
+    public void setLegRight(Limb legRight) {
+        this.legRight = legRight;
+    }
+
+    public Limb getLegLeft() {
+        return legLeft;
+    }
+
+    public void setLegLeft(Limb legLeft) {
+        this.legLeft = legLeft;
+    }
+//
+//    public void runSteps(int steps) throws InterruptedException {
+////        head.setLength(steps);
+////        int k = 0;
+////        for (Map.Entry<String, Limb> entry : mapLimb.entrySet()) {
+////            Limb limb = entry.getValue();
+////            limb.getSegmentBottom().generatePointSet();
+////            limb.getSegmentTop().generatePointSet();
+////            limb.getSegmentBottom().setLength(steps);
+////            limb.getSegmentTop().setLength(steps);
+////            Thread tb = new Thread(limb.getSegmentBottom(), "Limb Segment Bottom " + k);
+////            tb.start();
+////            tb.join();
+////            Thread tt = new Thread(limb.getSegmentTop(), "Limb Segment Top " + k);
+////            tt.start();
+////            tb.join();
+////            System.out.println("");
+////            tb.join();
+////            System.out.println("");
+////            tb.join();
+////
+////            k++;
+////        }
+//}
 
     @Override
     public String toString() {
-        return "Man{" + "head=" + head + "," + System.lineSeparator()
-                + " mapLimb=" + System.lineSeparator() + mapLimb + System.lineSeparator() + '}' + System.lineSeparator() + " " + System.lineSeparator();
+        return "Man{" + "head=" + head + ","
+                + " body=" + body + ","
+                + " handRight=" + handRight + ","
+                + " handLeft=" + handLeft + ","
+                + " legRight=" + legRight + ","
+                + " legLeft=" + legLeft + '}';
     }
 
 }

@@ -6,6 +6,7 @@
 package pns.api.mainClasses;
 
 import java.io.Serializable;
+import java.util.SortedSet;
 import pns.api.interfaces.ISteps;
 
 /**
@@ -14,46 +15,44 @@ import pns.api.interfaces.ISteps;
  */
 public class Limb implements Serializable, ISteps {
 
-    private Segment segmentTop;
-    private Segment segmentBottom;
+    private SortedSet<Segment> segmentSetTop;
+    private SortedSet<Segment> segmentSetBottom;
 
     public Limb() {
-        segmentBottom = new Segment();
-        segmentTop = new Segment();
     }
 
-    public Segment getSegmentTop() {
-        return segmentTop;
+    public SortedSet<Segment> getSegmentSetTop() {
+        return segmentSetTop;
     }
 
-    public Segment getSegmentBottom() {
-        return segmentBottom;
+    public void setSegmentSetTop(SortedSet<Segment> segmentSetTop) {
+        this.segmentSetTop = segmentSetTop;
     }
 
-    public void setSegmentTop(Segment segmentTop) {
-        this.segmentTop = segmentTop;
+    public SortedSet<Segment> getSegmentSetBottom() {
+        return segmentSetBottom;
     }
 
-    public void setSegmentBottom(Segment segmentBottom) {
-        this.segmentBottom = segmentBottom;
+    public void setSegmentSetBottom(SortedSet<Segment> segmentSetBottom) {
+        this.segmentSetBottom = segmentSetBottom;
     }
 
     @Override
     public void runSteps(int steps) throws InterruptedException {
-        segmentBottom.setLength(steps);
-        segmentTop.setLength(steps);
-        Thread tb = new Thread(segmentBottom, "Segment Bottom");
-        tb.start();
-        tb.join();
-        Thread tt = new Thread(segmentTop, "Segment Top");
-        tt.start();
-        tb.join();
+//        segmentBottom.setLength(steps);
+//        segmentTop.setLength(steps);
+//        Thread tb = new Thread(segmentBottom, "Segment Bottom");
+//        tb.start();
+//        tb.join();
+//        Thread tt = new Thread(segmentTop, "Segment Top");
+//        tt.start();
+//        tb.join();
     }
 
     @Override
     public String toString() {
-        return "Limb{" + "segmentTop=" + segmentTop + "," + System.lineSeparator()
-                + " segmentBottom=" + segmentBottom + '}';
+        return "Limb{" + "segmentTop=" + segmentSetTop + "," + System.lineSeparator()
+                + " segmentBottom=" + segmentSetBottom + '}';
     }
 
 }
