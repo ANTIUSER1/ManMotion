@@ -14,6 +14,7 @@ import pns.api.fileimports.ManFormation;
 import pns.api.fileimports.RecieverSegments;
 import pns.api.mainClasses.Man;
 import pns.api.mainClasses.Segment;
+import pns.api.mainClasses.boxies.SimpleSegmentContainer;
 import pns.api.utils.SetArrayDisplayUtil;
 import pns.fileUtils.FileBinActor;
 
@@ -54,6 +55,8 @@ public class Main {
     private static void convertNew(String s) {
 
         SortedSet<Segment> segmSet = ConvertorUtil.convertData(s, 300.3);
+        SimpleSegmentContainer ssc = new SimpleSegmentContainer();
+        ssc.setSegment(segmSet);
         Map<String, SortedSet<Segment>> segmMap = SegmentSeparator.separate(segmSet);
         segmMap = FileCalculator.integrate(segmMap);
 

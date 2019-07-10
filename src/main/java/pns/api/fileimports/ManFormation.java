@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.SortedSet;
 import pns.api.mainClasses.Limb;
 import pns.api.mainClasses.Man;
-import pns.api.mainClasses.ManHead;
+import pns.api.mainClasses.boxies.ManHead;
 import pns.api.mainClasses.Segment;
-import pns.api.mainClasses.SegmentBox;
+import pns.api.mainClasses.boxies.SegmentBox;
 
 /**
  *

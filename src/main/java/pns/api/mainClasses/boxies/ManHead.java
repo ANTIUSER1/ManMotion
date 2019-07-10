@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pns.api.mainClasses;
+package pns.api.mainClasses.boxies;
 
+import pns.api.mainClasses.boxies.SegmentBox;
 import java.util.SortedSet;
+import pns.api.mainClasses.Segment;
 
 /**
  *

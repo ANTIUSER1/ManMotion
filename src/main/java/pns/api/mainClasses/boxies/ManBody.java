@@ -3,23 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pns.api.mainClasses;
+package pns.api.mainClasses.boxies;
 
 import java.util.SortedSet;
+import pns.api.mainClasses.Segment;
 
 /**
  *
  * @author Movement
  */
-public class SegmentBox {
-
-    protected SortedSet<Segment> segment;
-
-    public SortedSet<Segment> getSegment() {
-        return segment;
-    }
+public class ManBody extends SegmentBox {
 
     public void setSegment(SortedSet<Segment> segment) {
         this.segment = segment;
     }
+
 }

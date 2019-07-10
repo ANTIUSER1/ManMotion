@@ -86,9 +86,6 @@ public class Segment implements Serializable, Runnable, Comparable, ISegm {
         return fixedPoint;
     }
 
-//    public Set<Point9> getPoint9TreeSet() {
-//        return point9TreeSet;
-//    }
     @Override
     public void run() {
         int k = 0;
@@ -178,7 +175,7 @@ public class Segment implements Serializable, Runnable, Comparable, ISegm {
             return -Integer.MAX_VALUE;
         }
         final Segment other = (Segment) o;
-        double diff = 10000000 * this.moment - 10000000 * other.moment;
+        double diff = this.moment - other.moment;
         if (diff > 0) {
             return 1;
         } else if (diff < 0) {

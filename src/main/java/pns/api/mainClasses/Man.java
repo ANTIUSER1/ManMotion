@@ -5,6 +5,8 @@
  */
 package pns.api.mainClasses;
 
+import pns.api.mainClasses.boxies.ManHead;
+import pns.api.mainClasses.boxies.SegmentBox;
 import java.io.Serializable;
 
 /**
