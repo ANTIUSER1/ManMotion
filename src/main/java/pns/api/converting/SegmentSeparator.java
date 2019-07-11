@@ -6,12 +6,12 @@
 package pns.api.converting;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import pns.api.mainClasses.Segment;
 import pns.api.utils.SetArrayDisplayUtil;
 
@@ -39,8 +39,7 @@ public class SegmentSeparator {
     }
 
     private static Map<String, SortedSet<Segment>> groupingSegmList(SortedSet<Segment> sgm) {
-
-        Map<String, SortedSet<Segment>> res = new HashMap<>();
+        Map<String, SortedSet<Segment>> res = new TreeMap<>();
         List<Segment> tmp = new ArrayList(sgm);
         Set<String> sgIdSet = sgIDs(tmp);
         List<String> sgList = new ArrayList<>(sgIdSet);
@@ -51,8 +50,27 @@ public class SegmentSeparator {
                 if (id.equals(tmp.get(p).getId())) {
                     SortedSet<Segment> sgmTmp = SetArrayDisplayUtil.search(sgm, id);
                     res.put(tmp.get(p).getId(), sgmTmp);
+                    //       res.put(ss, sgmTmp);
+
                 }
             }
+        }
+
+        return res;
+    }
+
+    public static List<Map<String, SortedSet<Segment>>> separateToList(Map<String, SortedSet<Segment>> segmMap) {
+        if (segmMap == null) {
+            return null;
+        }
+        int m = 0;
+        List<Map<String, SortedSet<Segment>>> res = new ArrayList<>();
+
+        for (Map.Entry<String, SortedSet<Segment>> entry : segmMap.entrySet()) {
+            Map<String, SortedSet<Segment>> tmp = new TreeMap<>();
+            tmp.put(entry.getKey(), entry.getValue());
+            res.add(tmp);
+
         }
         return res;
     }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import pns.api.converting.SegmentSeparator;
 import pns.api.mainClasses.Limb;
 import pns.api.mainClasses.Man;
 import pns.api.mainClasses.Segment;
@@ -86,9 +87,19 @@ public class SetArrayDisplayUtil {
 
     public static void setDisplay(Limb data) {
         System.out.println(" Top ");
-        setDisplay(data.getSegmentSetTop());
-        System.out.println("Bottom");
-        setDisplay(data.getSegmentSetBottom());
+        if (data != null) {
+            if (data.getSegmentSetTop() != null) {
+                setDisplay(data.getSegmentSetTop());
+            } else {
+                System.out.println("null");
+            }
+            System.out.println("Bottom");
+            if (data.getSegmentSetBottom() != null) {
+                setDisplay(data.getSegmentSetBottom());
+            } else {
+                System.out.println("null");
+            }
+        }
     }
 
     public static SortedSet<Segment> search(SortedSet<Segment> sgm, String needle) {
@@ -104,6 +115,19 @@ public class SetArrayDisplayUtil {
         }
 
         return res;
+    }
+
+    public static SortedSet<Segment> search(SortedSet<Segment> segmSet, int i) {
+        return null;
+    }
+
+    public static Map<String, SortedSet<Segment>> search(Map<String, SortedSet<Segment>> segmMap, int i) {
+        if (i < 0) {
+            return null;
+        }
+        List<Map<String, SortedSet<Segment>>> listOfMaps = SegmentSeparator.separateToList(segmMap);
+        return listOfMaps.get(i);
+
     }
 
 }

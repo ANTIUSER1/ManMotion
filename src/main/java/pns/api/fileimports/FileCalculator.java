@@ -171,7 +171,7 @@ public class FileCalculator {
         return sgmToCalcSet;
     }
 
-    public static Map<String, SortedSet<Segment>> integrate(Map<String, SortedSet<Segment>> segmMap) {
+    public static  Map<String, SortedSet<Segment>> integrate( Map<String, SortedSet<Segment>> segmMap) {
         for (Map.Entry<String, SortedSet<Segment>> entry : segmMap.entrySet()) {
             SortedSet<Segment> data = entry.getValue();
             SortedSet<Segment> rdata = integrate(data);

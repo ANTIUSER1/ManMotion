@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pns.api.fileimports;
+package pns.api.formations;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
+import pns.api.converting.SegmentSeparator;
+import pns.api.fileimports.RecieverSegments;
 import pns.api.mainClasses.Limb;
 import pns.api.mainClasses.Segment;
 import pns.api.utils.SizePositionUtils;
@@ -30,10 +32,30 @@ public class LimbDataFormation {
         SizePositionUtils.settingLenToSegments(segmSet0, lenTop);
 
         SortedSet<Segment> segmSet1 = RecieverSegments.recieveSegmSetByKey(segmMap, d1);
+        //   SizePositionUtils.settingLenToSegments(segmSet1, lenBottom);
+
+        limb.setSegmentSetTop(segmSet0);
+        limb.setSegmentSetBottom(segmSet1);
+        return limb;
+    }
+
+    public static Limb generateLimb(Map<String, SortedSet<Segment>> segmMap, int d0, int d1, double lenTop, double lenBottom) {
+        List<Map<String, SortedSet<Segment>>> listOfMaps = SegmentSeparator.separateToList(segmMap);
+        if (d0 < 0 || d0 >= listOfMaps.size()) {
+            return null;
+        }
+
+        Limb limb = new Limb();
+
+        SortedSet<Segment> segmSet0 = RecieverSegments.recieveSegmSetByKey(segmMap, d0);
+        SizePositionUtils.settingLenToSegments(segmSet0, lenTop);
+
+        SortedSet<Segment> segmSet1 = RecieverSegments.recieveSegmSetByKey(segmMap, d1);
         SizePositionUtils.settingLenToSegments(segmSet1, lenBottom);
 
         limb.setSegmentSetTop(segmSet0);
         limb.setSegmentSetBottom(segmSet1);
+
         return limb;
     }
 

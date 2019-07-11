@@ -10,8 +10,7 @@ import pns.api.converting.SegmentSeparator;
 import pns.api.fileimports.ConvertorUtil;
 import pns.api.fileimports.FileCalculator;
 import pns.api.fileimports.ImportTXT;
-import pns.api.fileimports.ManFormation;
-import pns.api.fileimports.RecieverSegments;
+import pns.api.formations.ManFormation;
 import pns.api.mainClasses.Man;
 import pns.api.mainClasses.Segment;
 import pns.api.mainClasses.boxies.SimpleSegmentContainer;
@@ -59,16 +58,42 @@ public class Main {
         ssc.setSegment(segmSet);
         Map<String, SortedSet<Segment>> segmMap = SegmentSeparator.separate(segmSet);
         segmMap = FileCalculator.integrate(segmMap);
-
-        SortedSet<Segment> segmSetD = RecieverSegments.recieveSegmSetByKey(segmMap, "D1");
-
-        SortedSet<Segment> body = SetArrayDisplayUtil.search(segmSet, "D1");
+        List<Map<String, SortedSet<Segment>>> listOfMapsSS = SegmentSeparator.separateToList(segmMap);
+        /*
+        // вытаскиваем сегменты из частей тела
+        // сегмент body
+        SortedSet<Segment> body = BodyPartsGenerator.oneSegmGen(segmMap, 1, 0, 50);
         SetArrayDisplayUtil.setDisplay(body);
 
-        SortedSet<Segment> head = SetArrayDisplayUtil.search(segmSet, "D0");
+        // сегмент head
+        SortedSet<Segment> head = BodyPartsGenerator.oneSegmGen(segmMap, 0, 0, 5);
         SetArrayDisplayUtil.setDisplay(head);
 
-        Man man = ManFormation.generateMan(segmMap, body, head);
+        // структура limb-hand-R
+        Limb limbHR = LimbDataFormation.generateLimb(segmMap, 2, 3, 15, 10);
+        SetArrayDisplayUtil.setDisplay(limbHR);
+
+        // структура limb-Hand-L
+        Limb limbHL = LimbDataFormation.generateLimb(segmMap, 4, 5, 10, 20);
+        SetArrayDisplayUtil.setDisplay(limbHL);
+
+        // структура limb-leg-R
+        Limb limbLR = LimbDataFormation.generateLimb(segmMap, 6, 7, 15, 10);
+        SetArrayDisplayUtil.setDisplay(limbLR);
+
+        // структура limb-leg-L
+        Limb limbLL = LimbDataFormation.generateLimb(segmMap, 8, 9, 10, 20);
+        SetArrayDisplayUtil.setDisplay(limbLL);
+
+        // структура limb-leg-L
+        Limb limb5 = LimbDataFormation.generateLimb(segmMap, 10, 11, 10, 20);
+        SetArrayDisplayUtil.setDisplay(limb5);
+
+        // структура limb-leg-L
+        Limb limb6 = LimbDataFormation.generateLimb(segmMap, 12, 13, 10, 20);
+        SetArrayDisplayUtil.setDisplay(limb6);
+         */
+        Man man = ManFormation.generateMan(segmMap);
         SetArrayDisplayUtil.setDisplay(man);
 
     }
