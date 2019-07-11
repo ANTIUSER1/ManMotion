@@ -15,8 +15,8 @@ import pns.api.interfaces.ISteps;
  */
 public class Limb implements Serializable, ISteps {
 
-    private SortedSet<Segment> segmentSetTop;
-    private SortedSet<Segment> segmentSetBottom;
+    protected SortedSet<Segment> segmentSetTop;
+    protected SortedSet<Segment> segmentSetBottom;
 
     public Limb() {
     }
