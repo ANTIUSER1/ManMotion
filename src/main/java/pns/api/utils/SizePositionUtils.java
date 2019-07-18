@@ -5,6 +5,8 @@
  */
 package pns.api.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
 import pns.api.mainClasses.Segment;
 
@@ -20,5 +22,13 @@ public class SizePositionUtils {
                 sg.setLength(len);
             }
         }
+    }
+
+    public static List<Segment> settolist(SortedSet<Segment> segmSet) {
+        List<Segment> res = new ArrayList<>();
+        for (Segment sg : segmSet) {
+            res.add(sg);
+        }
+        return res;
     }
 }

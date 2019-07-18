@@ -28,9 +28,12 @@ public class ConvertorUtil {
 
         List<SortedSet<Segment>> res = new ArrayList<>();
         SortedSet<Segment> result = new TreeSet();
-        String[] ssTMP = s.split(System.lineSeparator());
+        String[] ssTMP = s.split("[\\r\\n]+");//System.lineSeparator()
 
+        //     System.out.println("   --------------  ssTMP  length  " + ssTMP.length);
         for (String qs : ssTMP) {
+
+            //       System.out.println("qs:  " + qs);
             if (qs.trim().length() > 0) {
                 if (k > 0) {
                     SortedSet<Segment> segmentLST = segmentFromLine(qs, ssTMP[0], len);

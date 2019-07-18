@@ -10,8 +10,8 @@ import java.util.SortedSet;
 import pns.api.mainClasses.Limb;
 import pns.api.mainClasses.Man;
 import pns.api.mainClasses.Segment;
+import pns.api.mainClasses.boxies.ManBody;
 import pns.api.mainClasses.boxies.ManHead;
-import pns.api.mainClasses.boxies.SegmentBox;
 
 /**
  *
@@ -25,7 +25,7 @@ public class ManFormation {
         Limb RightHand = LimbDataFormation.generateLimb(segmMap, "D4", "D5", 200.4, 150.22);
         Limb LeftLeg = LimbDataFormation.generateLimb(segmMap, "D6", "D7", 20.4, 50.22);
         Limb RightLeg = LimbDataFormation.generateLimb(segmMap, "D8", "D9", 20.4, 50.22);
-        SegmentBox manBody = new SegmentBox();
+        ManBody manBody = new ManBody();
         ManHead manHead = new ManHead();
         manBody.setSegment(body);
         manHead.setSegment(head);
@@ -67,7 +67,7 @@ public class ManFormation {
         // структура limb-leg-6
         Limb limb6 = LimbDataFormation.generateLimb(segmMap, 12, 13, 10, 20);
 
-        SegmentBox manBody = new SegmentBox();
+        ManBody manBody = new ManBody();
         ManHead manHead = new ManHead();
         manBody.setSegment(body);
         manHead.setSegment(head);

@@ -54,6 +54,8 @@ public class Main {
     private static void convertNew(String s) {
 
         SortedSet<Segment> segmSet = ConvertorUtil.convertData(s, 300.3);
+        SetArrayDisplayUtil.setDisplay(segmSet);
+
         SimpleSegmentContainer ssc = new SimpleSegmentContainer();
         ssc.setSegment(segmSet);
         Map<String, SortedSet<Segment>> segmMap = SegmentSeparator.separate(segmSet);
@@ -94,7 +96,7 @@ public class Main {
         SetArrayDisplayUtil.setDisplay(limb6);
          */
         Man man = ManFormation.generateMan(segmMap);
-        SetArrayDisplayUtil.setDisplay(man);
+//        SetArrayDisplayUtil.setDisplay(man);
 
     }
 

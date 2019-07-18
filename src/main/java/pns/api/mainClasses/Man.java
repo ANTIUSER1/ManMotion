@@ -5,9 +5,10 @@
  */
 package pns.api.mainClasses;
 
+import java.io.Serializable;
+import pns.api.mainClasses.boxies.ManBody;
 import pns.api.mainClasses.boxies.ManHead;
 import pns.api.mainClasses.boxies.SegmentBox;
-import java.io.Serializable;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.io.Serializable;
 public class Man implements Serializable {
 
     private ManHead head;
-    private SegmentBox body;
+    private ManBody body;
     private Limb handRight;
     private Limb handLeft;
     private Limb legRight;
@@ -34,7 +35,7 @@ public class Man implements Serializable {
         return body;
     }
 
-    public void setBody(SegmentBox body) {
+    public void setBody(ManBody body) {
         this.body = body;
     }
 
