@@ -70,30 +70,6 @@ public class Man implements Serializable {
     public void setLegLeft(Limb legLeft) {
         this.legLeft = legLeft;
     }
-//
-//    public void runSteps(int steps) throws InterruptedException {
-////        head.setLength(steps);
-////        int k = 0;
-////        for (Map.Entry<String, Limb> entry : mapLimb.entrySet()) {
-////            Limb limb = entry.getValue();
-////            limb.getSegmentBottom().generatePointSet();
-////            limb.getSegmentTop().generatePointSet();
-////            limb.getSegmentBottom().setLength(steps);
-////            limb.getSegmentTop().setLength(steps);
-////            Thread tb = new Thread(limb.getSegmentBottom(), "Limb Segment Bottom " + k);
-////            tb.start();
-////            tb.join();
-////            Thread tt = new Thread(limb.getSegmentTop(), "Limb Segment Top " + k);
-////            tt.start();
-////            tb.join();
-////            System.out.println("");
-////            tb.join();
-////            System.out.println("");
-////            tb.join();
-////
-////            k++;
-////        }
-//}
 
     @Override
     public String toString() {

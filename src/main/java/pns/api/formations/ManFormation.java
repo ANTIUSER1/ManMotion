@@ -19,7 +19,7 @@ import pns.api.mainClasses.boxies.ManHead;
  */
 public class ManFormation {
 
-    public static Man generateMan(Map<String, SortedSet<Segment>> segmMap, SortedSet<Segment> body, SortedSet<Segment> head) {
+    public Man generateMan(Map<String, SortedSet<Segment>> segmMap, SortedSet<Segment> body, SortedSet<Segment> head) {
 
         Limb LeftHand = LimbDataFormation.generateLimb(segmMap, "D2", "D3", 200.4, 150.22);
         Limb RightHand = LimbDataFormation.generateLimb(segmMap, "D4", "D5", 200.4, 150.22);
@@ -42,6 +42,9 @@ public class ManFormation {
 
     public static Man generateMan(Map<String, SortedSet<Segment>> segmMap) {
 
+        if (segmMap.size() == 0) {
+            return null;
+        }
 // вытаскиваем сегменты из частей тела
         // сегмент body
         SortedSet<Segment> body = BodyPartsGenerator.oneSegmGen(segmMap, 1, 0, 50);
