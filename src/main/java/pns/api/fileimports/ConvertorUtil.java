@@ -60,7 +60,10 @@ public class ConvertorUtil {
         }
         //System.out.println("   QS:::  " + qs + "   ss.length  " + ss.length);
         double mmoment = 0;
+        ss[0] = ss[0].trim();
+
         try {
+            System.out.println("--   ss[0].trim() " + ss[0].trim());
             mmoment = Double.parseDouble(ss[0].trim());
         } catch (NumberFormatException e) {
             System.out.println("MM    M " + mmoment + "  ss[0] " + ss[0]);
@@ -71,9 +74,9 @@ public class ConvertorUtil {
         for (int p = 1; p < ss.length; p++) {
             segmString.add(ss[p].trim());
         }
-
+        //System.out.println(" moment " + mmoment);
         res = segmentListGenerator(segmString, hd, mmoment, len);
-        //  SetArrayUtil.setDisplay(res);
+        //SetArrayDisplayUtil.setDisplay(res);
 
         return res;
     }
@@ -98,8 +101,11 @@ public class ConvertorUtil {
 
     private static SortedSet<Segment> segmentListGenerator(List<String> sgList, String hd, double m, double len) {
         SortedSet<Segment> res = new TreeSet();
+        double mmm = 0;
         for (int k = 0; k < sgList.size(); k++) {
-            double mmm = m + k * .000000000001 * Math.random() * Math.random() * Math.random();
+            String stmp = m + "00000000000" + k + "000" + (k * k);
+            mmm = Double.parseDouble(stmp);// + Math.random() * Math.random() * .00000001 * Math.random();
+
             Segment segment = segmentGenerator(sgList.get(k), hd, mmm);
             segment.setLength(len);
             res.add(segment);
@@ -108,6 +114,7 @@ public class ConvertorUtil {
     }
 
     private static Segment segmentGenerator(String sg, String hd, double m) {
+        // System.out.println("   m " + m);
         Segment res = new Segment();
         sg = sg.replace('}', ' ').trim();
         String[] sss = sg.split("\\{");
